@@ -2,12 +2,12 @@ import firebase from "firebase";
 require("@firebase/firestore");
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAN6rs_1hjlrS4DAAgsqrQd6Hgea0k9IKU",
-  authDomain: "booksanta-5d19d.firebaseapp.com",
-  projectId: "booksanta-5d19d",
-  storageBucket: "booksanta-5d19d.appspot.com",
-  messagingSenderId: "511820192154",
-  appId: "1:511820192154:web:208482cbd643f1d72c4223",
+  apiKey: "AIzaSyDsj6XadY6tVUZ2KDFBhOdkhaloWLadbd4",
+  authDomain: "barter-app-e0f4b.firebaseapp.com",
+  projectId: "barter-app-e0f4b",
+  storageBucket: "barter-app-e0f4b.appspot.com",
+  messagingSenderId: "371458357917",
+  appId: "1:371458357917:web:445802d74905a4a8ab7274"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

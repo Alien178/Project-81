@@ -15,6 +15,8 @@ import {
 } from "react-native";
 import db from "../config";
 import firebase from "firebase";
+import * as Font from 'expo-font';
+
 
 export default class WelcomeScreen extends React.Component {
   constructor() {
@@ -28,6 +30,7 @@ export default class WelcomeScreen extends React.Component {
       contact: "",
       address: "",
       isModalVisible: false,
+      fontsLoaded: false,
     };
   }
 
@@ -36,7 +39,7 @@ export default class WelcomeScreen extends React.Component {
       .auth()
       .signInWithEmailAndPassword(emailID, password)
       .then(() => {
-        this.props.navigation.navigate("DonateBook")
+        this.props.navigation.navigate("DonateItem")
       })
       .catch((error) => {
         var errorCode = error.error;
@@ -196,10 +199,10 @@ export default class WelcomeScreen extends React.Component {
         {this.showModal()}
         <View style={styles.profileContainer}>
           <Image
-            source={require("../assets/bookSanta.png")}
-            style={{ width: 200, height: 200 }}
+            source={require("../assets/welcomeLogo.png")}
+            style={{ width: 150, height: 150 }}
           />
-          <Text style={styles.title}>Book Santa</Text>
+          <Text style={styles.title}>Barter App</Text>
         </View>
         <View>
           <TextInput
@@ -249,7 +252,7 @@ export default class WelcomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F8BE85",
+    backgroundColor: "#61C3E6",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -261,16 +264,19 @@ const styles = StyleSheet.create({
     fontSize: 65,
     fontWeight: "300",
     paddingBottom: 10,
-    color: "#ff3d00",
+    color: "#226DE6",
+    fontWeight: "bold",
   },
   loginBox: {
     width: 300,
     height: 40,
     borderBottomWidth: 1.5,
-    borderColor: "#ff8a65",
+    borderColor: "#2BACCC",
     fontSize: 20,
     margin: 10,
     paddingLeft: 10,
+    color: "white",
+    fontWeight: "bold",
   },
   KeyboardAvoidingView: {
     flex: 1,
@@ -281,8 +287,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     fontSize: 30,
-    color: "#ff5722",
+    color: "#226DE6",
     margin: 25,
+    fontWeight: "bold",
   },
   modalContainer: {
     flex: 1,
@@ -299,11 +306,13 @@ const styles = StyleSheet.create({
     width: "75%",
     height: 35,
     alignSelf: "center",
-    borderColor: "#ffab91",
+    borderColor: "#2BACCC",
     borderRadius: 10,
     borderWidth: 1,
     marginTop: 10,
     padding: 10,
+    fontWeight: "bold",
+    color: "black",
   },
   registerButton: {
     width: 200,
@@ -315,7 +324,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   registerButtonText: {
-    color: "#ff5722",
+    color: "#31C3E6",
     fontSize: 15,
     fontWeight: "bold",
   },
@@ -325,6 +334,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 5,
+    color: "#31C3E6",
   },
 
   button: {
@@ -333,7 +343,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 25,
-    backgroundColor: "#ff9800",
+    backgroundColor: "#31C3E6",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -343,10 +353,12 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     elevation: 16,
     padding: 10,
+    marginLeft: 10,
   },
   buttonText: {
     color: "#ffff",
     fontWeight: "200",
     fontSize: 20,
+    fontWeight: "bold",
   },
 });

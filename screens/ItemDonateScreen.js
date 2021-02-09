@@ -8,40 +8,37 @@ import {
   Image,
   TextInput,
   KeyboardAvoidingView,
-  ToastAndroid,
   Alert,
   FlatList,
-  Modal,
-  ScrollView,
 } from "react-native";
 import { ListItem } from "react-native-elements";
 import db from "../config";
 import firebase from "firebase";
 
-export default class BookDonateScreen extends React.Component {
+export default class ItemDonateScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      requestedBooksList: [],
+      requestedItemsList: [],
     };
     this.requestRef = null;
   }
 
-  getRequestedBooksList = () => {
-    this.requestRef = db.collection("requestedBooks").onSnapshot((Snapshot) => {
-      var requestedBooksList = Snapshot.docs.map((document) => document.data());
+  getRequestedItemsList = () => {
+    this.requestRef = db.collection("exchange_requests").onSnapshot((Snapshot) => {
+      var requestedItemsList = Snapshot.docs.map((document) => document.data());
       this.setState({
-        requestedBooksList: requestedBooksList,
+        requestedItemsList: requestedItemsList,
       });
     });
   };
 
   componentDidMount() {
-    this.getRequestedBooksList();
+    this.getRequestedItemsList();
   }
 
   componentWillUnmount() {
-    this.requestRef = null;
+    this.requestRef();
   }
 
   keyExtractor = (item, index) => index.toString();
@@ -50,10 +47,10 @@ export default class BookDonateScreen extends React.Component {
     return (
       <ListItem key={index} bottomDivider>
         <ListItem.Content>
-          <ListItem.Title>{item.bookName}</ListItem.Title>
-          <ListItem.Subtitle>{item.reasonToRequest}</ListItem.Subtitle>
+          <ListItem.Title>{item.itemName}</ListItem.Title>
+          <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
           <TouchableOpacity style={styles.button}>
-            <Text style={{ color: "#FFFFFF" }}>View</Text>
+            <Text style={{ color: "#FFFFFF", fontWeight: "bold", }}>View</Text>
           </TouchableOpacity>
         </ListItem.Content>
       </ListItem>
@@ -63,15 +60,15 @@ export default class BookDonateScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <MyHeader title={"Donate Book"} />
+        <MyHeader title={"Donate Item"} />
         <View style={{ flex: 1 }}>
-          {this.state.requestedBooksList.length == 0 ? (
+          {this.state.requestedItemsList.length == 0 ? (
             <View style={styles.subContainer}>
-              <Text style={{ fontSize: 20 }}>List Of All Requested Books</Text>
+              <Text style={{ fontSize: 20 }}>List Of All Requested Items</Text>
             </View>
           ) : (
             <FlatList
-              data={this.state.requestedBooksList}
+              data={this.state.requestedItemsList}
               keyExtractor={this.keyExtractor}
               renderItem={this.renderItem}
             ></FlatList>
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ff5722",
+    backgroundColor: "#24A0F2",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

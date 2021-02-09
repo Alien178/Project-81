@@ -1,32 +1,32 @@
 import * as React from "react";
 import { Image } from "react-native";
-import BookDonateScreen from "../screens/BookDonateScreen";
-import BookRequestScreen from "../screens/BookRequestScreen";
+import ItemDonateScreen from "../screens/ItemDonateScreen";
+import ItemRequestScreen from "../screens/ItemRequestScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 export const AppTabNavigator = createBottomTabNavigator({
-  DonateBook: {
-    screen: BookDonateScreen,
+  DonateItem: {
+    screen: ItemDonateScreen,
     navigationOptions: {
       tabBarIcon: (
         <Image
           source={require("../assets/donate.png")}
-          style={{ width: 20, height: 20 }}
+          style={{ width: 25, height: 30 }}
         ></Image>
       ),
-      tabBarLabel: "Donate Books",
+      tabBarLabel: "Donate Items",
     },
   },
-  RequestBook: {
-    screen: BookRequestScreen,
+  RequestItem: {
+    screen: ItemRequestScreen,
     navigationOptions: {
       tabBarIcon: (
         <Image
           source={require("../assets/request.png")}
-          style={{ width: 20, height: 20 }}
+          style={{ width: 30, height: 25 }}
         ></Image>
       ),
-      tabBarLabel: "Request Books",
+      tabBarLabel: "Request Items",
     },
   },
 });
